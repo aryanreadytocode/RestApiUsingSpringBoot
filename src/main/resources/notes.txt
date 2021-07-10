@@ -1,0 +1,6 @@
+Http Method     Uri                 Description         Valid Http Codes
+POST            /books              Create a book       201
+GET             /books/{bookId}     Read a book         200
+PUT             /books/{bookId}     Update a book       200
+DELETE          /books/{bookId}     Delete a book       204
+GET             /books              Retrieve all books  200,204,206
