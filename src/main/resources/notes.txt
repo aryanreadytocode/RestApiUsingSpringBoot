@@ -4,3 +4,31 @@ GET             /books/{bookId}     Read a book         200
 PUT             /books/{bookId}     Update a book       200
 DELETE          /books/{bookId}     Delete a book       204
 GET             /books              Retrieve all books  200,204,206
+
+Cascade:
+When we perform some action on the target entity, the same action will be applied to the associated entity.
+
+JPA Cascade type:
+All JPA-specific cascade operations are represented by the javax.persistence.CascadeType enum containing entries:
+
+1. All
+2. PERSIST 
+3. MERGE
+4. REMOVE
+5. REFRESH
+6. DETACH
+
+Hibernate Cascade Type:
+Hibernate supports three additional Cascade Types along with those specified by JPA.
+These Hibernate-specific Cascade Types are available in 
+org.Hibernate.annotation.CascadeType
+
+1. REPLICATE
+2. SAVE_UPDATE
+3. LOCK
+
+Bidirectional relationships in Jackson.
+JsonManageReference: It is the forward part of reference- the one that gets
+serialized normally.
+JsonBackReference is the back part of reference - it will be ommited from serialization.
+The serialized Item object does not contain a reference to the User object.
