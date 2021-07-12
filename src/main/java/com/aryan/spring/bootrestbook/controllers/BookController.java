@@ -57,7 +57,7 @@ public class BookController {
         try {
             b = bookServices.addBook(book); 
             System.out.println(b);
-            return ResponseEntity.of(Optional.of(b));
+            return ResponseEntity.status(HttpStatus.CREATED).body(b);
         } catch (Exception e) {
             //
             e.printStackTrace();
