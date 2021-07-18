@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+import com.aryan.spring.bootrestbook.entities.Author;
 import com.aryan.spring.bootrestbook.entities.Book;
+import com.aryan.spring.bootrestbook.services.AuthorService;
 import com.aryan.spring.bootrestbook.services.BookServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class BookController {
 
     @Autowired
     private BookServices bookServices;
+
+    @Autowired
+    private AuthorService authorService;
 
     // @RequestMapping(value = "/books", method = RequestMethod.GET)
     @GetMapping("/books")
@@ -85,5 +90,15 @@ public class BookController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/authors")
+    public ResponseEntity<List<Author>> getAuthors(){
+       
+        List<Author> author = authorService.getAllAuthors();
+        if(author.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(author));
     }
 }
