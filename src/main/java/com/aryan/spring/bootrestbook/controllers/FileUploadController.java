@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 @RestController
@@ -29,7 +30,9 @@ public class FileUploadController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("request must contain Image file");
             } else {
                 if(fileUploadHelper.uploadFile(file)) {
-                     return ResponseEntity.ok("File Uploaded Successfully");
+                    //  return ResponseEntity.ok("File Uploaded Successfully");
+
+                    return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("image/").path(file.getOriginalFilename()).toUriString());
                 }
             }
 
